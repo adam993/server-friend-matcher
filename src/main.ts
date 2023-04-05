@@ -11,7 +11,7 @@ async function bootstrap() {
 
   // Set a wrong "x-powered-by" header to confuse attackers
   app.use(function (req, res, next) {
-    res.setHeader('X-Powered-By', 'CakePHP')
+    res.setHeader('X-Powered-By', 'Rocket')
     next()
   }) 
   
