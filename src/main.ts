@@ -9,6 +9,12 @@ async function bootstrap() {
   const config: ConfigService = app.get(ConfigService);
   const port: number = config.get<number>('PORT');
 
+  // Set a wrong "x-powered-by" header to confuse attackers
+  app.use(function (req, res, next) {
+    res.setHeader('X-Powered-By', 'CakePHP')
+    next()
+  }) 
+  
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   await app.listen(port, () => {
